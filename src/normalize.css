@@ -1,0 +1,18 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg-clr-dark: #000000;
+    --bg-clr-light: #FFFFFF;
+  
+    --txt-clr-light: #FFFFFF;
+    --txt-clr-grey: #c2bfbf;
+    --txt-clr-orange: #F3A322;
+    --txt-clr-dark: #1C1C1C;
+  
+    --primary-font: 'Roboto', sans-serif;
+  
+  }

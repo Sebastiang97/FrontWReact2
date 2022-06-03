@@ -1,5 +1,5 @@
 import React from 'react'
 
 export const navbar = () => {
-  return <div>navbar</div>
+  return <div className='navbar'>navbar</div>
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { post } from '../api'
 import { Errors } from '../components/Errors'
+import "./Login.css" 
 
 export const Login = () => {
   const [errors, setErrors] = useState({
@@ -27,7 +28,7 @@ export const Login = () => {
   return (
     <>
       <a
-        className=''
+        className='login'
         href='https://backendnodejstzuzulcode.uw.r.appspot.com/api/auth/google'
       >
         <FcGoogle /> Iniciar sesión con Google

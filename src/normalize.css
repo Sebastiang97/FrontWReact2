@@ -14,5 +14,10 @@
     --txt-clr-dark: #1C1C1C;
   
     --primary-font: 'Roboto', sans-serif;
-  
+
+    --title-fs: 18px;
+    --subtitle-fs: 15px;
+    --text-fs: 14px;
+
+    --line-height: 1.5;  
   }

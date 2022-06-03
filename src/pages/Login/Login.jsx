@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { post } from '../api'
-import { Errors } from '../components/Errors'
+import { post } from '../../api'
+import { Errors } from '../../components/Errors'
 import "./Login.css" 
 
 export const Login = () => {
@@ -8,6 +8,10 @@ export const Login = () => {
     isErrors: true,
     errors: [],
   })
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
   const handleLogin = (e) => {
     e.preventDefault()
     post('/api/auth/login', {
@@ -31,7 +35,7 @@ export const Login = () => {
         className='login'
         href='https://backendnodejstzuzulcode.uw.r.appspot.com/api/auth/google'
       >
-        <FcGoogle /> Iniciar sesión con Google
+        Login with Google
       </a>
       <form className='' onSubmit={handleLogin}>
         <input className='' type='email' name='email' />

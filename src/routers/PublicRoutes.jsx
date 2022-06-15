@@ -1,26 +1,24 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../context/contex'
 import { Routes, Route } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
-import { Login } from '../pages/login'
-import { SignUp } from '../pages/SignUp'
+import { AuthContext } from '../context/context'
+import { Login } from '../pages/Login/Login'
+import { SignUp } from '../pages/Signup/SignUp'
 
-export const PublicRoutes = ({ children }) => {
-  const { user } = useContext(AuthContext)
+export const PublicRoutes = () => {
+  const { logged } = useContext(AuthContext)
 
   return (
     <>
-      {user.logged ? (
-        <Navigate to='/home' />
+      {logged ? (
+        <Navigate to='/dashboard/home' />
       ) : (
-        <div className='container'>
-          <Routes>
-            <Route path='/' element={<h1>Hola mundo</h1>} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<SignUp />} />
-            <Route path='*' element={<h1>Pagina no encontrada</h1>} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path='login' element={<Login />} />
+          <Route path='signup' element={<SignUp />} />
+          <Route path='catalogo' element={<h2>Catalogo View</h2>} />
+          <Route path='*' element={<Login />} />
+        </Routes>
       )}
     </>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { Navbar } from '../components/Navbar/Navbar'
 
 export const Dashboard = () => {
   return (
@@ -7,8 +8,10 @@ export const Dashboard = () => {
       <Navbar />
       <div className='container'>
         <Routes>
-          <Route path='/home' element={<h1>Hola mundo</h1>} />
-          <Route path='*' element={<h1>Pagina no encontrada</h1>} />
+          <Route path='/home' element={<h1>Home View</h1>} />
+          <Route path='/contact' element={<h1>Contact View</h1>} />
+          <Route path='/store' element={<h1>Store View</h1>} />
+          <Route path='*' element={<h2>No encontro la vista</h2>} />
         </Routes>
       </div>
     </>

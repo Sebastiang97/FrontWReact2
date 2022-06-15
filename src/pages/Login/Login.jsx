@@ -1,48 +1,72 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { post } from '../../api'
 import { Errors } from '../../components/Errors'
-import "./Login.css" 
+import './Login.css'
+import { useForm } from 'react-hook-form'
+import { AuthContext } from '../../context/context'
 
 export const Login = () => {
-  const [errors, setErrors] = useState({
-    isErrors: true,
-    errors: [],
+  const { setUser } = useContext(AuthContext)
+  // const [errors, setErrors] = useState({
+  //   isErrors: true,
+  //   errors: [],
+  // })
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: 'all',
   })
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
-  const handleLogin = (e) => {
-    e.preventDefault()
+  //emial: sebs@gmail.com
+  //password: 123456
+  const handleLogin = (data) => {
+    const { email, password } = data
     post('/api/auth/login', {
-      email: email.value,
-      password: password.value,
+      email: email,
+      password: password,
     })
       .then((response) => {
-        console.log(response)
+        if (response.success) {
+          setUser({ type: 'LOGIN', payload: response.user })
+        }
       })
       .catch((error) => {
-        setErrors({
-          isErrors: true,
-          errors: error.errors,
-        })
+        console.log(error)
+        // setErrors({
+        //   isErrors: true,
+        //   errors: error.errors,
+        // })
       })
   }
 
   return (
-    <>
+    <div className='login'>
       <a
-        className='login'
+        className=''
         href='https://backendnodejstzuzulcode.uw.r.appspot.com/api/auth/google'
       >
         Login with Google
       </a>
-      <form className='' onSubmit={handleLogin}>
-        <input className='' type='email' name='email' />
-        <input className='' type='password' name='password' />
+      <form className='' onSubmit={handleSubmit(handleLogin)}>
+        <input
+          type='text'
+          name='email'
+          {...register('email', {
+            required: true,
+            pattern: /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/i,
+          })}
+        />
+        <input
+          type='password'
+          name='password'
+          {...register('password', { required: true })}
+        />
         <button className=''>Iniciar sesión</button>
       </form>
-      <Errors errors={errors} />
-    </>
+      {/* <Errors errors={errors} /> */}
+    </div>
   )
 }
